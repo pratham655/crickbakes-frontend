@@ -1,1 +1,49 @@
+# 🏏 CrickBakes
+
+CrickBakes is a modern cricket web application focused on:
+
+- 🏏 IPL
+- 👩 WPL (Women's Premier League)
+- 🏆 ICC Tournaments
+- 🇮🇳 India Men & Women Matches
+
+Built as a full-stack project with a clean frontend and scalable backend architecture.
+
+---
+
+## 🚀 Live Demo
+
+🔗 https://crickbakes-frontend.vercel.app
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- HTML
+- CSS
+- JavaScript
+- Deployed on Vercel
+
+### Backend (In Progress)
+- Node.js
+- Express.js
+- RapidAPI (Cricbuzz API)
+- Deployed on Render
+
+---
+
+## 🎯 Features
+
+- Match listing page
+- Match detail page
+- Responsive UI
+- Clean card-based layout
+- Modular frontend & backend structure
+- API integration with caching strategy (backend)
+
+---
+
+## 📂 Project Structure
+
 
