@@ -45,5 +45,32 @@ Built as a full-stack project with a clean frontend and scalable backend archite
 ---
 
 ## 📂 Project Structure
+crickbakes-frontend/
+│
+├── index.html # Match listing page
+└── match.html # Match details page
 
+
+---
+
+## 🔥 Future Enhancements
+
+- Real-time live scores
+- Full scorecard view
+- Live indicator animation
+- Leaderboard section
+- API optimization
+- Custom domain deployment
+
+---
+
+## 🎉 Launch Goal
+
+Official launch planned on **February 10** 🚀
+
+---
+
+## 👨‍💻 Author
+
+Built with focus, caffeine, and cricket passion.
 
