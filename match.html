@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Match Details 🏏</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      padding: 20px;
+    }
+
+    .card {
+      background: #1e1e1e;
+      padding: 25px;
+      margin: 40px auto;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    .back-btn {
+      margin-top: 20px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background: #00ffcc;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background: #00ccaa;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🏏 Match Details</h1>
+
+<div class="card" id="matchDetails">
+  Loading...
+</div>
+
+<button class="back-btn" onclick="goBack()">⬅ Back</button>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const matchId = params.get("id");
+
+  fetch("https://crickbakes-backend.onrender.com/live-matches")
+    .then(res => res.json())
+    .then(data => {
+
+      const match = data.find(m => m.matchId === matchId);
+      const container = document.getElementById("matchDetails");
+
+      if (!match) {
+        container.innerHTML = "Match not found.";
+        return;
+      }
+
+      container.innerHTML = `
+        <h2>${match.team1} vs ${match.team2}</h2>
+        <p><strong>Status:</strong> ${match.status}</p>
+        <p><strong>Venue:</strong> ${match.venue}</p>
+        <p><strong>Type:</strong> ${match.matchType || "Cricket"}</p>
+      `;
+    })
+    .catch(() => {
+      document.getElementById("matchDetails").innerHTML =
+        "Unable to load match details.";
+    });
+
+  function goBack() {
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>

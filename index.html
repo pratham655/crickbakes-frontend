@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CrickBakes 🏏</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      padding: 20px;
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .tagline {
+      color: #00ffcc;
+      margin-bottom: 20px;
+    }
+
+    .match-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .match-card {
+      background: #1e1e1e;
+      padding: 20px;
+      width: 280px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .match-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffcc;
+    }
+
+    .teams {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .status {
+      margin-top: 8px;
+      color: #00ff88;
+      font-weight: bold;
+    }
+
+    .venue {
+      font-size: 14px;
+      margin-top: 5px;
+      color: #ccc;
+    }
+
+    .badge {
+      margin-top: 10px;
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      background: #ff9800;
+      color: black;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      background: #111;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🏏 CrickBakes</h1>
+<div class="tagline">IPL • WPL • ICC • India Matches</div>
+
+<div class="match-container" id="matches">
+  Loading matches...
+</div>
+
+<footer>
+  Built with ❤️ | Launching Feb 10 🚀
+</footer>
+
+<script>
+  fetch("https://crickbakes-backend.onrender.com/live-matches")
+    .then(res => res.json())
+    .then(data => {
+
+      const container = document.getElementById("matches");
+      container.innerHTML = "";
+
+      data.forEach(match => {
+
+        const card = document.createElement("div");
+        card.className = "match-card";
+
+        card.onclick = () => {
+          window.location.href = `match.html?id=${match.matchId}`;
+        };
+
+        card.innerHTML = `
+          <div class="teams">${match.team1} vs ${match.team2}</div>
+          <div class="venue">${match.venue}</div>
+          <div class="status">${match.status}</div>
+          <div class="badge">${match.matchType || "Cricket"}</div>
+        `;
+
+        container.appendChild(card);
+      });
+
+    })
+    .catch(() => {
+      document.getElementById("matches").innerHTML =
+        "Unable to load matches right now.";
+    });
+</script>
+
+</body>
+</html>
